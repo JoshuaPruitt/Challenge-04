@@ -94,6 +94,7 @@ section {
 #error {
   color: var(--error);
   opacity: .75;
-  position: absolute;
+  /* position: absolute; */
   bottom: -2rem;
+  padding-bottom: 20px;
 }
