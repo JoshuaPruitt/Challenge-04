@@ -11,14 +11,14 @@ let redirectURL = '';
 let infoStorage;
 
 // initilize at page startup. Keeps infostorage from being overwritten to be blank
-if (infoStorage == null){
-  infoStorage = [];
-
-} else {
-  console.log("working!")
-  infoStorage = JSON.parse(localStorage.getItem('pageInformation'));
-  console.log(infoStorage);
-}
+function initilize (){
+  if (JSON.parse(localStorage.getItem('pageInformation')) !== null){
+    console.log("Information inside")
+    infoStorage = JSON.parse(localStorage.getItem('pageInformation'));
+  };
+  
+  return infoStorage
+};
 
 function formSubmission(){
   let tempPageStorage = {username: usernameId.value, title: titleId.value, body: bodyId.value}
@@ -33,14 +33,19 @@ const redirectPage = function (url) {
   location.assign(url);
 };
 
-// TODO: Add an event listener to the form on submit. Call the function to handle the form submission.
+//initialize page. Prepare everything at page startup
+initilize()
+
+
 submitId.addEventListener('click', function (event) {
   event.preventDefault();
 
+  // check is there is information inside of the boxes on click of the submission button
   if (usernameId.value == null || titleId.value == null || bodyId.value == null){
     error.textContent = 'Error! Username, title, or body is missing! Please add then submit';
     error.append;
-
+  
+  // if theres info inside of all the boxes send that info to storage and switch pages
   } else {
     //push info to local storage
     formSubmission()
