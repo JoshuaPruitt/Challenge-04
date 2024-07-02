@@ -33,10 +33,6 @@ const redirectPage = function (url) {
   location.assign(url);
 };
 
-//initialize page. Prepare everything at page startup
-initilize()
-
-
 submitId.addEventListener('click', function (event) {
   event.preventDefault();
 
@@ -54,3 +50,6 @@ submitId.addEventListener('click', function (event) {
     redirectPage('blog.html')
   }
 });
+
+//initialize page. Prepare everything at page startup
+initilize()

@@ -45,8 +45,13 @@ function pageBuild (storage){
 
 // function for displaying a message when there are no blogs in storage
 function noBlog (){
+    const article = document.createElement('article')
+    pageBody.appendChild(article);
 
-}
+    const noBlog = document.createElement('h4');
+    noBlog.textContent = "Im Sorry, there are no blogs to display at this time.. No worries you can create one by hitting the 'Add Blog' button at the top right of the page!!";
+    article.appendChild(noBlog);
+};
 
 // Reads the data from local storage and returns it
 function pageStorage (){
@@ -71,4 +76,6 @@ backButton.addEventListener('click', function (event) {
     redirectPage('index.html')
 });
 
-createPage()
+// createPage()
+
+noBlog()
