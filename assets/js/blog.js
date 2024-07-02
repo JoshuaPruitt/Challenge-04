@@ -1,10 +1,18 @@
 // TODO: Create a variable that selects the main element
 const mainEl = document.getElementsByTagName('main')
 const pageBody = document.getElementById('body')
+const backButton = document.getElementById('back')
 
+let redirectURL = '';
 let infoStorage;
-// TODO: Create a function that builds an element and appends it to the DOM
 
+// sends user back to first page to add another blog
+const redirectPage = function (url) {
+    redirectURL = url;
+    location.assign(url);
+};
+
+// builds the page by appending tags to the html
 function pageBuild (storage){
     for (let i=0; i < storage.length; i++){
         const article = document.createElement('article')
@@ -34,13 +42,13 @@ function pageBuild (storage){
         // console.log("I should work")
     }
 };
-// TODO: Create a function that handles the case where there are no blog posts to display
 
+// function for displaying a message when there are no blogs in storage
 function noBlog (){
 
 }
-// TODO: Create a function that reads from local storage and returns the data
 
+// Reads the data from local storage and returns it
 function pageStorage (){
     if (JSON.parse(localStorage.getItem('pageInformation')) !== null){
         infoStorage = JSON.parse(localStorage.getItem('pageInformation'))
@@ -50,12 +58,17 @@ function pageStorage (){
     }
     return infoStorage
 };
-// TODO: Call the function to render the list of blog posts
 
+// runs createPage at page startup and adds blogs to page
 function createPage(){
     pageStorage()
 
     pageBuild(infoStorage)
 }
+
+backButton.addEventListener('click', function (event) {
+    // redirect to first page if button clicked
+    redirectPage('index.html')
+});
 
 createPage()
