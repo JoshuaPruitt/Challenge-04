@@ -22,13 +22,13 @@ function pageBuild (storage){
         titleEl.textContent = storage[i].title;
         article.appendChild(titleEl);
 
-        const usernameEl = document.createElement('h3')
-        usernameEl.textContent = storage[i].username;
-        article.appendChild(usernameEl);
-
-        const bodyEl = document.createElement('p')
+        const bodyEl = document.createElement('blockquote')
         bodyEl.textContent = storage[i].body;
         article.appendChild(bodyEl);
+
+        const usernameEl = document.createElement('p')
+        usernameEl.textContent = `Posted by : ${storage[i].username}`;
+        article.appendChild(usernameEl);
 
         article;
         pageBody.appendChild(article);
