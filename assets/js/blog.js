@@ -2,28 +2,36 @@
 const mainEl = document.getElementsByTagName('main')
 const pageBody = document.getElementById('body')
 
-const article = document.createElement('article')
-const titleEl = document.createElement('h2')
-const usernameEl = document.createElement('h3')
-const bodyEl = document.createElement('p')
-
 let infoStorage;
 // TODO: Create a function that builds an element and appends it to the DOM
 
 function pageBuild (storage){
-    for (let i=0; i > storage.length; i++){
+    for (let i=0; i < storage.length; i++){
+        const article = document.createElement('article')
         pageBody.appendChild(article);
 
+        const titleEl = document.createElement('h2')
         titleEl.textContent = storage[i].title;
         article.appendChild(titleEl);
 
+        const usernameEl = document.createElement('h3')
         usernameEl.textContent = storage[i].username;
         article.appendChild(usernameEl);
 
+        const bodyEl = document.createElement('p')
         bodyEl.textContent = storage[i].body;
         article.appendChild(bodyEl);
 
+        article;
         pageBody.appendChild(article);
+
+        // document.getElementById('body').innerHTML = `
+        // <article>
+        // <h2>${storage[i].title}</h2>
+        // <h3>${storage[i].username}</h3>
+        // <p>${storage[i].body}</p>
+        // </article>`;
+        // console.log("I should work")
     }
 };
 // TODO: Create a function that handles the case where there are no blog posts to display
@@ -46,6 +54,7 @@ function pageStorage (){
 
 function createPage(){
     pageStorage()
+
     pageBuild(infoStorage)
 }
 
