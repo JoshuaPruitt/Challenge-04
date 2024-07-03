@@ -1,38 +1,58 @@
 const darkLightToggle = document.getElementById('toggle')
+let dark;
 
-let dark = false;
-// TODO: Create logic to toggle the light/dark mode styles for the page and circle. The mode should be saved to local storage.
 function LDToggle(){
     //toggles the page to put it into dark mode
-    var element = document.body;
-    element.classList.toggle('dark');
 
+    //once clicked on, set dark to false and change the color of the scene
     if (dark == false){
         dark = true;
+        document.body.classList.remove('light')
+        document.body.classList.add('dark')
+        darkLightToggle.value = '🌑';
     } else {
         dark = false;
+        document.body.classList.remove('dark')
+        document.body.classList.add('light')
+        darkLightToggle.value = '☀️';
     }
 };
 
-// TODO: Create functions to read and write from local storage
-function toggleStorage(){
-    
-    // check if there is storage. If there is then change the value of dark to equal true
+// read from local storage
+function readStorage(){
+    // if there is data inside of the local storage then take that data and read it
     if (JSON.parse(localStorage.getItem('dark')) !== null){
-        dark = true;
+        dark = JSON.parse(localStorage.getItem('dark'));
+        console.log(dark)
+    };
+    return dark
+};
 
-    // if there is not check if the value has been changed. If it has then store the value
-    } else {
 
-        if (dark == true){
-            localStorage.setItem('toggle', JSON.stringify(dark));
-    
-        } 
-    } 
+function writeStorage(){
+    // take the value from dark and push it to storage so that it can be read on other pages
+    localStorage.setItem('dark', JSON.stringify(dark));
 };
 
 darkLightToggle.addEventListener('click', function(event){
-    toggleStorage();
+    //toggle the light/dark
     LDToggle();
-
+    //write the result into storage
+    writeStorage();
 });
+
+function init (){
+    //read storage on startup
+    readStorage()
+    console.log(dark)
+
+    // change the color if the page data has been set to dark mode
+    if (dark == true){
+        document.body.classList.remove('light')
+        document.body.classList.add('dark')
+        darkLightToggle.value = '🌑';
+    }
+};
+
+//run init on startup 
+init()

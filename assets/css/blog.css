@@ -18,7 +18,7 @@ article {
 }
 
 article blockquote {
-  margin: 1rem;
+  margin: 4rem;
   margin-bottom: 2rem;
   font-style: italic;
 }
@@ -36,7 +36,7 @@ article p {
 }
 
 footer {
-  position: fixed;
+  /* position: fixed;*/
   inset: 0;
   top: calc(100% - 5rem);
 }
