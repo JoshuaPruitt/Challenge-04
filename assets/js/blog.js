@@ -76,6 +76,6 @@ backButton.addEventListener('click', function (event) {
     redirectPage('index.html')
 });
 
-// createPage()
+createPage()
 
-noBlog()
+// noBlog()
