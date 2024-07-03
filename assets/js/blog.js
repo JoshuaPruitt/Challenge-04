@@ -32,14 +32,6 @@ function pageBuild (storage){
 
         article;
         pageBody.appendChild(article);
-
-        // document.getElementById('body').innerHTML = `
-        // <article>
-        // <h2>${storage[i].title}</h2>
-        // <h3>${storage[i].username}</h3>
-        // <p>${storage[i].body}</p>
-        // </article>`;
-        // console.log("I should work")
     }
 };
 
@@ -73,7 +65,7 @@ function createPage(){
 
 backButton.addEventListener('click', function (event) {
     // redirect to first page if button clicked
-    redirectPage('index.html')
+    redirectPage('./index.html')
 });
 
 createPage()

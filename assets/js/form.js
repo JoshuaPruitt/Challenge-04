@@ -47,7 +47,7 @@ submitId.addEventListener('click', function (event) {
     formSubmission()
 
     //redirect page
-    redirectPage('blog.html')
+    redirectPage('./blog.html')
   }
 });
 
