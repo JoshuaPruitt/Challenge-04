@@ -23,7 +23,6 @@ function readStorage(){
     // if there is data inside of the local storage then take that data and read it
     if (JSON.parse(localStorage.getItem('dark')) !== null){
         dark = JSON.parse(localStorage.getItem('dark'));
-        console.log(dark)
     };
     return dark
 };
@@ -44,7 +43,6 @@ darkLightToggle.addEventListener('click', function(event){
 function init (){
     //read storage on startup
     readStorage()
-    console.log(dark)
 
     // change the color if the page data has been set to dark mode
     if (dark == true){

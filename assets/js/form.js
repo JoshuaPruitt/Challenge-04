@@ -5,6 +5,7 @@ const usernameId = document.getElementById('username')
 const titleId = document.getElementById('title')
 const bodyId = document.getElementById('bodyContent')
 const submitId = document.getElementById('submit')
+const blogRedirect = document.getElementById('back')
 
 // set the url to blank. Define the storage
 let redirectURL = '';
@@ -32,6 +33,11 @@ const redirectPage = function (url) {
   redirectURL = url;
   location.assign(url);
 };
+
+blogRedirect.addEventListener('click', function(){
+  // redirect to the blog page if button pressed
+  redirectPage('./blog.html')
+});
 
 submitId.addEventListener('click', function (event) {
   event.preventDefault();
