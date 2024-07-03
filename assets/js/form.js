@@ -8,7 +8,7 @@ const submitId = document.getElementById('submit')
 
 // set the url to blank. Define the storage
 let redirectURL = '';
-let infoStorage;
+let infoStorage = [];
 
 // initilize at page startup. Keeps infostorage from being overwritten to be blank
 function initilize (){
