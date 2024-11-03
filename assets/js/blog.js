@@ -1,10 +1,9 @@
-// TODO: Create a variable that selects the main element
 const mainEl = document.getElementsByTagName("main");
 const pageBody = document.getElementById("body");
 const backButton = document.getElementById("back");
+const clearButton = document.getElementById("clear");
 
 let redirectURL = "";
-let infoStorage;
 
 // sends user back to first page to add another blog
 const redirectPage = function (url) {
@@ -14,24 +13,28 @@ const redirectPage = function (url) {
 
 // builds the page by appending tags to the html
 function pageBuild(storage) {
-  for (let i = 0; i < storage.length; i++) {
-    const article = document.createElement("article");
-    pageBody.appendChild(article);
+  if (storage == null) {
+    noBlog();
+  } else {
+    for (let i = 0; i < storage.length; i++) {
+      const article = document.createElement("article");
+      pageBody.appendChild(article);
 
-    const titleEl = document.createElement("h2");
-    titleEl.textContent = storage[i].title;
-    article.appendChild(titleEl);
+      const titleEl = document.createElement("h2");
+      titleEl.textContent = storage[i].title;
+      article.appendChild(titleEl);
 
-    const bodyEl = document.createElement("blockquote");
-    bodyEl.textContent = storage[i].body;
-    article.appendChild(bodyEl);
+      const bodyEl = document.createElement("blockquote");
+      bodyEl.textContent = storage[i].body;
+      article.appendChild(bodyEl);
 
-    const usernameEl = document.createElement("p");
-    usernameEl.textContent = `Posted by : ${storage[i].username}`;
-    article.appendChild(usernameEl);
+      const usernameEl = document.createElement("p");
+      usernameEl.textContent = `Posted by : ${storage[i].username}`;
+      article.appendChild(usernameEl);
 
-    article;
-    pageBody.appendChild(article);
+      article;
+      pageBody.appendChild(article);
+    }
   }
 }
 
@@ -41,27 +44,31 @@ function noBlog() {
   pageBody.appendChild(article);
 
   const noBlog = document.createElement("h4");
-  noBlog.textContent =
-    "Im Sorry, there are no blogs to display at this time.. No worries you can create one by hitting the 'Add Blog' button at the top right of the page!!";
+  noBlog.textContent = "no blog posts are available!";
   article.appendChild(noBlog);
 }
 
 // Reads the data from local storage and returns it
-function storeLocalStorage() {
+function readLocalStorage() {
   if (JSON.parse(localStorage.getItem("pageInformation")) !== null) {
-    infoStorage = JSON.parse(localStorage.getItem("pageInformation"));
+    const infoStorage = JSON.parse(localStorage.getItem("pageInformation"));
     console.log(infoStorage);
+
+    return infoStorage;
   } else {
-    noBlog();
+    return null;
   }
-  return infoStorage;
 }
 
 // runs createPage at page startup and adds blogs to page
 function createPage() {
-  storeLocalStorage();
+  const infoStorage = readLocalStorage();
 
   pageBuild(infoStorage);
+}
+
+function clearLocalStorage() {
+  localStorage.clear();
 }
 
 backButton.addEventListener("click", function (event) {
@@ -69,6 +76,9 @@ backButton.addEventListener("click", function (event) {
   redirectPage("./index.html");
 });
 
-createPage();
+//clear local storage when clicked on
+clearButton.addEventListener("click", () => {
+  clearLocalStorage();
+});
 
-// noBlog()
+createPage();

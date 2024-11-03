@@ -1,9 +1,8 @@
-// TODO: Create a variable that selects the form element
 const formEl = document.getElementsByTagName("form");
 const error = document.getElementById("error");
 const usernameId = document.getElementById("username");
 const titleId = document.getElementById("blog-title");
-const bodyId = document.getElementById("bodyContent");
+const bodyId = document.getElementById("blog-content");
 const submitId = document.getElementById("submit");
 const blogRedirect = document.getElementById("back");
 
