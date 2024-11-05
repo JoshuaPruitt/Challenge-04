@@ -1,4 +1,4 @@
-const darkLightToggle = document.getElementById("toggle");
+const darkLightToggle = document.querySelector("#toggle");
 const root = document.documentElement;
 let dark;
 

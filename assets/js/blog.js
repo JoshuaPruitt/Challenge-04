@@ -1,4 +1,4 @@
-const mainEl = document.getElementsByTagName("main");
+const mainEl = document.querySelector("main");
 const pageBody = document.getElementById("body");
 const backButton = document.getElementById("back");
 const clearButton = document.getElementById("clear");
@@ -25,7 +25,7 @@ function pageBuild(storage) {
       article.appendChild(titleEl);
 
       const bodyEl = document.createElement("blockquote");
-      bodyEl.textContent = storage[i].body;
+      bodyEl.textContent = storage[i].content;
       article.appendChild(bodyEl);
 
       const usernameEl = document.createElement("p");
@@ -44,14 +44,14 @@ function noBlog() {
   pageBody.appendChild(article);
 
   const noBlog = document.createElement("h4");
-  noBlog.textContent = "no blog posts are available!";
+  noBlog.textContent = "No Blog posts yet...";
   article.appendChild(noBlog);
 }
 
 // Reads the data from local storage and returns it
 function readLocalStorage() {
-  if (JSON.parse(localStorage.getItem("pageInformation")) !== null) {
-    const infoStorage = JSON.parse(localStorage.getItem("pageInformation"));
+  if (JSON.parse(localStorage.getItem("blogs")) !== null) {
+    const infoStorage = JSON.parse(localStorage.getItem("blogs"));
     console.log(infoStorage);
 
     return infoStorage;

@@ -1,8 +1,8 @@
 const formEl = document.getElementsByTagName("form");
-const error = document.getElementById("error");
+const error = document.querySelector("#error");
 const usernameId = document.getElementById("username");
-const titleId = document.getElementById("blog-title");
-const bodyId = document.getElementById("blog-content");
+const titleId = document.getElementById("title");
+const bodyId = document.getElementById("content");
 const submitId = document.getElementById("submit");
 const blogRedirect = document.getElementById("back");
 
@@ -12,24 +12,28 @@ let infoStorage = [];
 
 // initilize at page startup. Keeps infostorage from being overwritten to be blank
 function initilize() {
-  if (JSON.parse(localStorage.getItem("pageInformation")) !== null) {
+  if (JSON.parse(localStorage.getItem("blogs")) !== null) {
     console.log("Information inside");
-    infoStorage = JSON.parse(localStorage.getItem("pageInformation"));
+    infoStorage = JSON.parse(localStorage.getItem("blogs"));
   }
 
   return infoStorage;
+}
+
+function storeLocalStorage(object) {
+  localStorage.setItem("blogs", JSON.stringify(object));
 }
 
 function formSubmission() {
   let tempPageStorage = {
     username: usernameId.value,
     title: titleId.value,
-    body: bodyId.value,
+    content: bodyId.value,
   };
   infoStorage.push(tempPageStorage);
 
   // sends the collected information to local storage
-  localStorage.setItem("pageInformation", JSON.stringify(infoStorage));
+  storeLocalStorage(infoStorage);
 }
 
 const redirectPage = function (url) {
@@ -51,9 +55,10 @@ submitId.addEventListener("click", function (event) {
     titleId.value == null ||
     bodyId.value == null
   ) {
-    error.textContent =
-      "Error! Username, title, or body is missing! Please add then submit";
+    error.textContent = "Please complete the form.";
     error.append;
+
+    throw new Error("Username, title, or body is missing!)");
 
     // if theres info inside of all the boxes send that info to storage and switch pages
   } else {
